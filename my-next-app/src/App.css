@@ -1,0 +1,169 @@
+
+#header{
+    background-image: url('./assets/header.jpg');
+    background-repeat: no-repeat;
+    background-size:cover;
+    filter: blur(10px);
+    -webkit-filter: blur(10px);
+    width: 100%;
+    height: 10rem;
+}
+
+#header-text{
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 3rem;
+    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    z-index: 2; 
+    width: 100%;
+}
+
+#about{
+    margin: 10rem auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 872px;
+}
+
+#shows{
+    margin-top: 7rem;
+}
+
+.brand-name{
+    font-size: 5rem;
+    background: -webkit-linear-gradient(180deg,#b1c2f9, #fd0f0f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.options{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.options div{
+    margin: 0 1rem;
+}
+
+.options div:hover{
+    transform: translate(-10%, -10%);
+    background: -webkit-linear-gradient(180deg,#b1c2f9, #fd0f0f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.description{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.description-title{
+    font-size: 3rem;
+    font-weight: 600;
+    line-height: 3rem;
+    margin-bottom: 2rem;
+    text-wrap:pretty;
+}
+
+.description-brief{
+    margin-bottom: 1rem;
+}
+
+.tv{
+    height: 15rem;
+    padding-left: 5rem;
+}
+
+.price{
+    color: green;
+}
+
+.shows-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 5rem 10rem;
+}
+#card{
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: rgba(255, 255, 255, 0.454) 0px 3px 8px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 3rem 2.5rem 3rem;
+    position: relative;
+}
+
+.movie-details{
+    background-color: rgba(78, 88, 110, 0.76);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.movie-details div{
+    color: white;
+    font-weight: 600;
+}
+
+#show {
+    margin: 5rem auto;
+    text-align: center;
+}
+
+#show img {
+    border-radius: 1rem;
+}
+
+@media (max-width: 768px) {
+    #header-text {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .brand-name {
+        font-size: 3rem;
+    }
+
+    .shows-list {
+        margin: 2rem 1rem;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .description-title {
+        font-size: 2rem;
+    }
+
+    .tv {
+        height: 10rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-name {
+        font-size: 2.5rem;
+    }
+
+    #header {
+        height: 8rem;
+    }
+
+    .shows-desc {
+        font-size: 1.5rem;
+    }
+
+    #show h1 {
+        font-size: 2.5rem;
+    }
+
+    #show img {
+        width: 80%;
+    }
+}
