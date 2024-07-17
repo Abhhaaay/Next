@@ -25,15 +25,16 @@ function Show() {
   return (
     <>
       <Header />
-      <div id="show" className="text-white text-center my-10">
-        <h1 className="text-4xl font-bold">{show.title}</h1>
-        <div className="my-4">
-          <img src={show.posterUrls} alt={show.title} className="w-1/4 mx-auto rounded-lg shadow-lg" />
+      <div id="show" className="text-center my-10">
+        <div className='images-slide flex justify-center'>
+          <img src={show.images[0].imgUrl} className='img-show'/>
+          <img src={show.images[1].imgUrl} className='img-show'/>
+          <img src={show.images[2].imgUrl} className='img-show'/>
         </div>
-        <div className="text-xl">
+        <h1 className="text-5xl font-bold text-red-600 mb-4">{show.title}</h1>
+        <div className="text-xl text-white">
           <p><strong>Price:</strong> ${show.price}</p>
-          <p><strong>Vendor:</strong> {show.vendor}</p>
-          <p><strong>Rating:</strong> {show.rating}</p>
+          <p><strong>Rating:</strong> {show.rating}/5</p>
         </div>
       </div>
     </>

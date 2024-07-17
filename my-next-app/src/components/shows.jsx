@@ -10,7 +10,7 @@ function Shows() {
     const fetchMovies = async () => {
       try {
         const response = await axios.get('http://localhost:8080/movie');
-        console.log(response);
+        console.log(response.data);
         setReleases(response.data);
       } catch (error) {
         console.log(error);
@@ -31,7 +31,8 @@ function Shows() {
           {
             releases.map(release => 
             <Card key={release.id} id={release.id} title={release.title}
-            price={release.price} vendor={release.vendor} rating={release.rating} poster_url={release.posterUrls}/>
+            price={release.price} vendor={release.vendor} rating={release.rating}
+            images={release.images} />
             )
           }
         </div>

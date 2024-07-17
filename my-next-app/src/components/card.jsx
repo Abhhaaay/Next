@@ -6,13 +6,13 @@ function Card(props) {
     <Link to= {`/show/${props.id}`}>
       <div id="card">
         <div className="movie-thumbnail">
-            <img src={props.poster_url} />
+            <img src={props.images[1].imgUrl}/>
         </div>
         <div className="movie-details">
             <div>{props.title}</div>
             <p>{props.type}</p>
             <p className='price'>${props.price}</p>
-            <p>{props.vendor}</p>
+            <p className='text-white'>{props.vendor}</p>
         </div>
     </div>
     </Link>

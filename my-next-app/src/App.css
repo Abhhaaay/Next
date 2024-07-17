@@ -46,15 +46,34 @@
     align-items: end;
 }
 
-.options div{
-    margin: 0 1rem;
+.search-result{
+    position: absolute;
+    top: 100%;
+    right: 3%;
+    background-color: #3b0063;
+    display: flex;
+    align-items: center;
 }
 
-.options div:hover{
-    transform: translate(-10%, -10%);
-    background: -webkit-linear-gradient(180deg,#b1c2f9, #fd0f0f);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.search-img{
+    height: 10rem;
+    padding: 1rem 2rem;
+}
+
+.search-details{
+    font-size: 0.9rem;
+    font-weight: 200;
+    text-align: left;
+}
+
+.search-details h2{
+    color: #fd0f0f;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.options div{
+    margin: 0 1rem;
 }
 
 .description{
@@ -82,7 +101,7 @@
 }
 
 .price{
-    color: green;
+    color: rgb(184, 174, 45);
 }
 
 .shows-list{
@@ -101,14 +120,16 @@
 }
 
 .movie-details{
-    background-color: rgba(78, 88, 110, 0.76);
+    background-color: rgba(27, 9, 36, 0.906);
     position: absolute;
     bottom: 0;
     width: 100%;
+    padding-left: 1rem;
 }
 
 .movie-details div{
     color: white;
+    font-size: 1.5rem;
     font-weight: 600;
 }
 
@@ -119,6 +140,11 @@
 
 #show img {
     border-radius: 1rem;
+}
+
+.img-show{
+    width: 13rem;
+    margin: 0 2rem;
 }
 
 @media (max-width: 768px) {

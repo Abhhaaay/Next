@@ -1,10 +1,8 @@
 package com.example.next.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.util.List;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "movie")
@@ -16,18 +14,19 @@ public class Movie {
     private Double price;
     private String vendor;
     private int rating;
-    private String poster_urls;
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Image> images;
 
     public Movie() {
     }
 
-    public Movie(Long id, String title, Double price, String vendor, int rating, String poster_urls) {
+    public Movie(Long id, String title, Double price, String vendor, int rating, List<Image> images) {
         this.id = id;
         this.title = title;
         this.price = price;
         this.vendor = vendor;
         this.rating = rating;
-        this.poster_urls = poster_urls;
+        this.images = images;
     }
 
 
@@ -71,11 +70,11 @@ public class Movie {
         this.rating = rating;
     }
 
-    public String getPosterUrls(){
-        return poster_urls;
+    public List<Image> getImages(){
+        return images;
     }
 
-    public void setPosterUrls(String poster_urls){
-        this.poster_urls = poster_urls;
+    public void setImages(List<Image> images){
+        this.images = images;
     }
 }

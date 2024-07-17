@@ -1,3 +1,4 @@
+
 package com.example.next.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,23 @@ public class MovieController {
     public Movie getMovieById(@PathVariable Long id) {
         Optional<Movie> movie = movieRepository.findById(id);
         if (movie.isPresent()) {
-            return movie.get();
+            Movie presentMovie = movie.get(); 
+            double calculatedPrice = presentMovie.getPrice() + (0.1 * presentMovie.getRating()*presentMovie.getPrice());
+            presentMovie.setPrice(calculatedPrice);
+            return presentMovie;
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found");
+        }
+    }
+
+    @GetMapping("/movie/title/{title}")
+    public Movie getMovieByName(@PathVariable String title) {
+        Optional<Movie> movie = movieRepository.findByTitle(title);
+        if (movie.isPresent()) {
+            Movie presentMovie = movie.get(); 
+            double calculatedPrice = presentMovie.getPrice() + (0.1 * presentMovie.getRating()*presentMovie.getPrice());
+            presentMovie.setPrice(calculatedPrice);
+            return presentMovie;
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found");
         }
