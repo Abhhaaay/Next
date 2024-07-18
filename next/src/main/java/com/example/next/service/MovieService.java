@@ -9,7 +9,9 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.next.entity.Movie;
 import com.example.next.repository.MovieRepository;
@@ -33,6 +35,20 @@ public class MovieService {
                 return movie;
             })
             .collect(Collectors.toList());
+    }
+
+    public List<Movie> getMoviesByLetters(String query){
+        List<Movie> movies = movieRepository.findByTitleContaining(query);
+        if (movies.size() != 0) {
+            List<Movie> filteredMovies = filterForLowerPrice(movies);
+            for(Movie movie: filteredMovies){
+                double calculatedPrice = movie.getPrice() + (0.1 * movie.getRating()*movie.getPrice());
+                movie.setPrice(calculatedPrice);
+            }
+            return filteredMovies;
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found");
+        }
     }
 
     private List<Movie> filterForLowerPrice(List<Movie> movies) {

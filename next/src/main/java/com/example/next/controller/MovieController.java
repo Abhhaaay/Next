@@ -56,4 +56,9 @@ public class MovieController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found");
         }
     }
+
+    @GetMapping("/movies/search/{query}")
+    public List<Movie> getMoviesByLetters(@PathVariable String query){
+        return movieService.getMoviesByLetters(query);
+    }
 }

@@ -13,9 +13,6 @@
     display: flex;
     justify-content: space-between;
     padding: 2rem 3rem;
-    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
-    color: white;
-    font-weight: bold;
     position: absolute;
     top: 0;
     z-index: 2; 
@@ -46,17 +43,23 @@
     align-items: end;
 }
 
-.search-result{
+.result-menu{
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 100%;
-    right: 3%;
-    background-color: #3b0063;
+    right: 3.5rem;
+}
+
+.search-result{
+    background-color: #9f33ad30;
     display: flex;
     align-items: center;
+    border: 0.1rem solid rgba(0, 0, 0, 0.425);
 }
 
 .search-img{
-    height: 10rem;
+    height: 5rem;
     padding: 1rem 2rem;
 }
 
@@ -69,7 +72,7 @@
 .search-details h2{
     color: #fd0f0f;
     font-weight: 500;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .options div{
@@ -112,11 +115,14 @@
 #card{
     border-radius: 0.5rem;
     overflow: hidden;
-    box-shadow: rgba(255, 255, 255, 0.454) 0px 3px 8px;
     display: flex;
     flex-direction: column;
     margin: 0 3rem 2.5rem 3rem;
     position: relative;
+}
+
+#card:hover{
+    box-shadow: rgba(84, 78, 110, 0.454) -0.5rem -0.5rem 10px 8px;
 }
 
 .movie-details{
@@ -135,11 +141,6 @@
 
 #show {
     margin: 5rem auto;
-    text-align: center;
-}
-
-#show img {
-    border-radius: 1rem;
 }
 
 .img-show{

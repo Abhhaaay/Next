@@ -2,6 +2,19 @@
 import { Link } from 'react-router-dom'
 
 function Card(props) {
+
+  var colour = '';
+
+  if(props.vendor == 'Netflix'){
+    colour = 'text-red-500';
+  }
+  else if(props.vendor == 'Prime'){
+    colour = 'text-blue-500';
+  }
+  else if(props.vendor == 'Disney'){
+    colour = 'text-green-500';
+  }
+
   return (
     <Link to= {`/show/${props.id}`}>
       <div id="card">
@@ -10,9 +23,8 @@ function Card(props) {
         </div>
         <div className="movie-details">
             <div>{props.title}</div>
-            <p>{props.type}</p>
-            <p className='price'>${props.price}</p>
-            <p className='text-white'>{props.vendor}</p>
+            <p className='text-yellow-400'>${props.price}</p>
+            <p className={colour}>{props.vendor}</p>
         </div>
     </div>
     </Link>
