@@ -1,15 +1,16 @@
-import '../index.css';
-import searchImg from '../assets/search-3.svg';
+import searchImg from '../../assets/search-3.svg';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
+import './header.css';
 
 function Header() {
   const [isVisible, setIsVisible] = useState(true);
   const [isNotVisible, setIsNotVisible] = useState(false);
   const [showName, setShowName] = useState("");
-  const [releases, setReleases] = useState([]); // Initialize as an empty array
+  const [releases, setReleases] = useState([]);
+  const [noResult, setNoResult] = useState(false);
 
   const hide = () => {
     setIsVisible(false);
@@ -24,20 +25,53 @@ function Header() {
     try {
       const response = await axios.get(`http://localhost:8080/movies/search/${query}`);
       setReleases(response.data);
+      setNoResult(false);
     } catch (error) {
-      console.error(error);
+      setReleases([]);
+      setNoResult(true);
     }
   };
 
-  const debouncedFetchShow = useRef(_.debounce(fetchShow, 300)).current;
+  const debouncedFetchShow = useRef(_.debounce(fetchShow, 1500)).current;
 
   useEffect(() => {
     if (showName) {
       debouncedFetchShow(showName);
     } else {
-      setReleases([]); // Clear results if input is empty
+      setReleases([]);
     }
   }, [showName, debouncedFetchShow]);
+
+  const renderMovieResults = () => {
+    if(showName){
+      if (releases.length > 0) {
+        return releases.map((release) => (
+          <Link key={release.id} to={`/show/${release.id}`}>
+            <div className="search-result">
+              <div>
+                <img src={release.images[0].imgUrl} className='search-img' alt={release.title} />
+              </div>
+              <div className='search-details'>
+                <h2>{release.title}</h2>
+                <p className='text-amber-500'>{release.price}</p>
+                <p>{release.rating}/5</p>
+              </div>
+            </div>
+          </Link>
+        ));
+      }
+       else if (noResult) {
+        return (
+          <div className="search-result">
+            <div className='text-white w-56 h-10'>
+              No movie found
+            </div>
+          </div>
+        );
+      }
+    }
+    return null; 
+  };
 
   return (
     <div>
@@ -57,31 +91,18 @@ function Header() {
               </div>
             )}
             {isNotVisible && (
-              <div >
-                <input 
-                  type='text' 
-                  className='text-black rounded-md mr-2' 
-                  onChange={updateName} 
-                  value={showName} 
+              <div className='flex'>
+                <input
+                  type='text'
+                  className='text-black rounded-md mr-2'
+                  onChange={updateName}
+                  value={showName}
                 />
-                <button onClick={() => fetchShow(showName)} className='font-semibold'>Search</button>
+                <button onClick={() => fetchShow(showName)} className='font-semibold bg-red-500 text-white p-1 text-xs rounded-md'>Search</button>
               </div>
             )}
             <div className='result-menu max-h-96 overflow-auto'>
-            {releases.length > 0 && releases.map((release) => (
-              <Link key={release.id} to={`/show/${release.id}`}>
-                <div className="search-result">
-                  <div>
-                    <img src={release.images[0].imgUrl} className='search-img' />
-                  </div>
-                  <div className='search-details'>
-                    <h2>{release.title}</h2>
-                    <p className='text-amber-500'>${release.price}</p>
-                    <p>{release.rating}/5</p>
-                  </div>
-                </div>
-              </Link>
-            ))}
+              {renderMovieResults()}
             </div>
           </div>
         </div>

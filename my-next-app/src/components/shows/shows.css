@@ -1,0 +1,14 @@
+
+#shows{
+    margin-top: 7rem;
+}
+
+.price{
+    color: rgb(184, 174, 45);
+}
+
+.shows-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 5rem 10rem;
+}

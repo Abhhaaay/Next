@@ -1,0 +1,60 @@
+openapi: 3.0.0
+info:
+  title: Swagger Next Application - OpenAPI 3.0
+paths:  
+  /movie:
+    get:
+      tags:
+        - movie
+      summary: Get movies 
+      description: The movies are fetched from mySQL.
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Movie' 
+components:
+  schemas:
+    Movie:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Primary key
+        title:
+          type: string
+          description: Name of the movie
+        price:
+          type: number
+          format: double
+          description: Price of the movie
+        vendor:
+          type: string
+          description: Name of the vendor  
+        rating:
+          type: integer
+          description: Rating of the movie
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+          description: Images of the movie
+    Image:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Primary key
+        imgUrl:
+          type: string
+          description: source of the image
+        movie_id:
+          type: integer
+          format: int64
+          description: Foreign key    

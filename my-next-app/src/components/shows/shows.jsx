@@ -1,6 +1,6 @@
-
 import axios from 'axios'
-import Card from './card'
+import Card from '../card/card'
+import './shows.css'
 import {useEffect, useState } from 'react';
 
 function Shows() {

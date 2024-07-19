@@ -1,5 +1,5 @@
-
-import tv from '../assets/tv-2.svg'
+import './about.css';
+import tv from '../../assets/tv-2.svg';
 
 function about() {
   return (
@@ -10,12 +10,13 @@ function about() {
             Watch what&apos;s trending, anytime, anywhere with our entertainment platform.
           </div>
           <div className='description-brief'>
-            We bring you shows from different beloved platforms such as Netflix, Prime Video, Hotstar, etc.
+            We bring you shows from different beloved platforms such as Netflix, Prime Video, Disney, etc.
             All at your fingertips. 
           </div>
         </div>
-        <div>
-          <img src={tv} className="tv animate-bounce"/>
+        <div className='flex-col pl-24'>
+          <img src={tv} className="animate-bounce size-56"/>
+          <span className='shadow'>sjlkjlajslddscc</span>
         </div>
       </div>
   )

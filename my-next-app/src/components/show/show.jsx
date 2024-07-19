@@ -1,8 +1,9 @@
-import Header from './header';
+import Header from '../header/header';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Carousel } from 'antd';
+import './show.css'
 
 function Show() {
   const [show, setShow] = useState(null);
